@@ -93,54 +93,55 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			{
-				!isSearching &&
-
-						<div className="p-4">
-							<h3 className="py-4"> Movie Categories</h3>
-							<div className="grid w-full gap-6 grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-4">
-								{moviesCategories.slice(0, 4).map((movie) => (
-									<div className="w-72 h-72 bg-black md:mx-0 mx-auto my-3 rounded overflow-hidden">
-										<img
-											src={movie.Poster}
-											className="w-full max-h-60 object-fit"
-											alt={movie.Title}
-										/>
-										<div className="bg-grey text-white p-2 text-center h-7 z-10">
-											<p>{movie.Title}</p>
-										</div>
-									</div>
-								))}
+			{!isSearching && (
+				<div className="p-4">
+					<h3 className="py-4">Movie Categories</h3>
+					<div className="grid w-full gap-6 grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-4">
+						{moviesCategories.slice(0, 4).map((movie) => (
+							<div
+								className="w-72 h-72 bg-black md:mx-0 mx-auto my-3 rounded overflow-hidden"
+								key={movie.imdbID}
+							>
+								<img
+									src={movie.Poster}
+									className="w-full max-h-60 object-fit"
+									alt={movie.Title}
+								/>
+								<div className="bg-grey text-white p-2 text-center h-7 z-10">
+									<p>{movie.Title}</p>
+								</div>
 							</div>
-						</div>
-
-			}
-
-			{
-				isSearching && 
-					<div className="p-4">
-						<h3 className="py-4"> Search Results of '{movieName}'</h3>
-						<div className="grid w-full gap-6 grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-4">
-							{	movieName ? (
-									movies.map((movie) => (
-										<div className="w-72 h-72 bg-black md:mx-0 mx-auto my-3 rounded overflow-hidden">
-											<img
-												src={movie.Poster}
-												className="w-full max-h-60 object-fit "
-												alt={movie.Title}
-											/>
-											<div className="bg-grey text-white p-2 text-center h-7 z-10">
-												<p>{movie.Title}</p>
-											</div>
-										</div>
-									))
-								) : (
-									<p>Movies Loading...</p>
-								)
-							}
-						</div>
+						))}
 					</div>
-			}
+				</div>
+			)}
+
+			{isSearching && (
+				<div className="p-4">
+					<h3 className="py-4"> Search Results of &#39;{movieName}&#39;</h3>
+					<div className="grid w-full gap-6 grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-4">
+						{movieName ? (
+							movies.map((movie) => (
+								<div
+									className="w-72 h-72 bg-black md:mx-0 mx-auto my-3 rounded overflow-hidden"
+									key={movie.imdbID}
+								>
+									<img
+										src={movie.Poster}
+										className="w-full max-h-60 object-fit "
+										alt={movie.Title}
+									/>
+									<div className="bg-grey text-white p-2 text-center h-7 z-10">
+										<p>{movie.Title}</p>
+									</div>
+								</div>
+							))
+						) : (
+							<p>Movies Loading...</p>
+						)}
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }
